@@ -1,0 +1,13 @@
+apiVersion: k0smotron.io/v1beta1
+kind: Cluster
+metadata: # kpt-merge: k0smotron/CLUSTER_NAME
+  name: edge-k8s-ctrl
+  namespace: k0smotron
+  annotations:
+    internal.kpt.dev/upstream-identifier: 'k0smotron.io|Cluster|k0smotron|CLUSTER_NAME'
+spec:
+  k0sVersion: v1.30.3+k0s.0 # kpt-set: ${k0s-release-version}
+  persistence:
+    type: emptyDir
+  service:
+    type: LoadBalancer
