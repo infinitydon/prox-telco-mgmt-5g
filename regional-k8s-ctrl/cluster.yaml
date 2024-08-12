@@ -6,7 +6,7 @@ metadata: # kpt-merge: k0smotron/CLUSTER_NAME
   annotations:
     internal.kpt.dev/upstream-identifier: 'k0smotron.io|Cluster|k0smotron|CLUSTER_NAME'
 spec:
-  version: v1.30.3-k0s.0 # kpt-set: ${k0s-release-version}
+  version: v1.29.7-k0s.0 # kpt-set: ${k0s-release-version}
   persistence:
     type: emptyDir
   service:
