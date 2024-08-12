@@ -17,6 +17,6 @@ upstreamLock:
     repo: https://github.com/infinitydon/nephio-proxmox-packages.git
     directory: k0smotron-package
     ref: r3
-    commit: c53433d564034ec7a3115dd078ffb6ddbaddc51d
+    commit: 48cb908488638f4b84f73d53f654e5734804b493
 info:
   description: this package is used to deploy k0smotron
