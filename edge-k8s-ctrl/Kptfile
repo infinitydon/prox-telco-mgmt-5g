@@ -20,3 +20,16 @@ upstreamLock:
     commit: 96e5a4395c2248a8aac437c8a68ce94054903bf9
 info:
   description: this package is used to deploy k0smotron k8s controlplanes for the workload clusters
+pipeline:
+  mutators:
+  - name: PackageVariant.edge-k8s-ctrl..0
+    image: gcr.io/kpt-fn/apply-setters:v0.2.0
+    configMap:
+      k0s-release-version: v1.30.3-k0s.0
+  - name: PackageVariant.edge-k8s-ctrl..1
+    image: gcr.io/kpt-fn/search-replace:v0.2.0
+    configMap:
+      by-value: CLUSTER_NAME
+      put-value: edge-k8s-ctrl
+    selectors:
+    - kind: Cluster
