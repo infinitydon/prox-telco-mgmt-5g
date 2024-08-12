@@ -1,0 +1,13 @@
+apiVersion: k0smotron.io/v1beta1
+kind: Cluster
+metadata: # kpt-merge: NAME_SPACE/CLUSTER_NAME
+  name: core-k8s-ctrl
+  namespace: core # kpt-set: ${k0s-cluster-ns}
+  annotations:
+    internal.kpt.dev/upstream-identifier: 'k0smotron.io|Cluster|NAME_SPACE|CLUSTER_NAME'
+spec:
+  version: v1.30.3-k0s.0 # kpt-set: ${k0s-release-version}
+  persistence:
+    type: emptyDir
+  service:
+    type: LoadBalancer

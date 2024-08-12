@@ -1,0 +1,36 @@
+apiVersion: kpt.dev/v1
+kind: Kptfile
+metadata: # kpt-merge: /core-k8s-ctrl
+  name: core-k8s-ctrl
+  annotations:
+    config.kubernetes.io/local-config: "true"
+    internal.kpt.dev/upstream-identifier: 'kpt.dev|Kptfile|default|core-k8s-ctrl'
+upstream:
+  type: git
+  git:
+    repo: https://github.com/infinitydon/nephio-proxmox-packages.git
+    directory: hosted-k8s-k0smotron-package
+    ref: r3
+upstreamLock:
+  type: git
+  git:
+    repo: https://github.com/infinitydon/nephio-proxmox-packages.git
+    directory: hosted-k8s-k0smotron-package
+    ref: r3
+    commit: 48cb908488638f4b84f73d53f654e5734804b493
+info:
+  description: this package is used to deploy k0smotron k8s controlplanes for the workload clusters
+pipeline:
+  mutators:
+  - name: PackageVariant.core-k8s-ctrl..0
+    image: gcr.io/kpt-fn/apply-setters:v0.2.0
+    configMap:
+      k0s-cluster-ns: core
+      k0s-release-version: v1.30.3-k0s.0
+  - name: PackageVariant.core-k8s-ctrl..1
+    image: gcr.io/kpt-fn/search-replace:v0.2.0
+    configMap:
+      by-value: CLUSTER_NAME
+      put-value: core-k8s-ctrl
+    selectors:
+    - kind: Cluster
