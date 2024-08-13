@@ -1,7 +1,7 @@
 apiVersion: infra.contrib.fluxcd.io/v1alpha2
 kind: Terraform
 metadata: # kpt-merge: flux-system/NAME
-  name: NAME
+  name: edge-nodegroup
   namespace: flux-system
   annotations:
     internal.kpt.dev/upstream-identifier: 'infra.contrib.fluxcd.io|Terraform|flux-system|NAME'
@@ -17,29 +17,29 @@ spec:
     namespace: flux-system
   vars:
   - name: proxmox_api_url
-    value: PROXMOX_API_URL # kpt-set: ${proxmox-api-url}
+    value: https://192.168.100.1:8006 # kpt-set: ${proxmox-api-url}
   - name: proxmox_host_node
-    value: PROXMOX_HOST_NODE # kpt-set: ${proxmox-host-node}
+    value: pve # kpt-set: ${proxmox-host-node}
   - name: ssh_public_key
-    value: SSH_PUBLIC_KEY # kpt-set: ${ssh-public-key}
+    value: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCzFoEvSkACwz74tvyd5BDrLU5eRHFolzg5ZpN0fSihdjhEQAaI9oM/o/L1d8z7NwJWXjihuzdvTh7jEuRDtKpm3PBKK7YFSSkETBrnZkJvmoNXO4GdcGEVcfDkmZ9Cavefz63cbf2Qn7l2neQ2kiw2EEJLqUGz3unASp6ABhV3xT1TRQ59AyV/S3xvTAX+m7ePvnpQ9uy5/lsBSHtB1uD/CRr/aj2NwWDXnyffy+XSHzZUvxkNzwuZaRTNNHUqO4HPoJOrqbnU50ToosKy0axJm2l8+YH9/qgxFUnoPugzFySYIihXdXcc7tcD0iajcOGs4C8ywJVPI5ZHqmaeGX4T5AZsQm2I5IxycP0YCd+/0RHbuymqYtmu43gLqgmhvWi3DGBxbXEmTSWi8h5AVB5UR7KERLpxYQSSGvzkPASxI5fXWU+UpjyovwWwPdyt03mSa0LXYLu/9KhpjmFKfZt+1yYxhN0lThEt/k0kX0w7OG8zi4Sls0er3AYWgzdBq2k= # kpt-set: ${ssh-public-key}
   - name: vm_name
-    value: VM_NAME # kpt-set: ${vm-name}
+    value: prox-telco-edge-5g # kpt-set: ${vm-name}
   - name: vm_identifier
-    value: VM_ID # kpt-set: ${vm-id}
+    value: 10001 # kpt-set: ${vm-id}
   - name: os_template_id
-    value: OS_TEMPLATE_ID # kpt-set: ${os-template-id}
+    value: 9003 # kpt-set: ${os-template-id}
   - name: workload_join_token_secret_name
-    value: WORKLOAD_JOIN_TOKEN_SECRET_NAME # kpt-set: ${workload-join-token-secret-name}
+    value: edge-token # kpt-set: ${workload-join-token-secret-name}
   - name: workload_kubeconfig_secret_name
-    value: WORKLOAD_KUBECONFIG_SECRET_NAME # kpt-set: ${workload-kubeconfig-secret-name}
+    value: edge-k8s-ctrl-kubeconfig # kpt-set: ${workload-kubeconfig-secret-name}
   - name: workload_kubeconfig_ns
-    value: WORKLOAD_KUBECONFIG_NS # kpt-set: ${workload-kubeconfig-ns}
+    value: edge # kpt-set: ${workload-kubeconfig-ns}
   - name: github_repository
-    value: GITHUB_REPOSITORY # kpt-set: ${github-repo}
+    value: prox-telco-edge-5g # kpt-set: ${github-repo}
   - name: github_org
-    value: GITHUB_ORG # kpt-set: ${github-org}
+    value: infinitydon # kpt-set: ${github-org}
   varsFrom:
   - kind: Secret
     name: proxmox-creds
   writeOutputsToSecret:
-    name: NAME
+    name: edge-nodegroup
