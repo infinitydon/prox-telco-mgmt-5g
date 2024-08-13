@@ -1,0 +1,26 @@
+apiVersion: kpt.dev/v1
+kind: Kptfile
+metadata: # kpt-merge: /edge-nodegroup
+  name: edge-nodegroup
+  annotations:
+    config.kubernetes.io/local-config: "true"
+    internal.kpt.dev/upstream-identifier: 'kpt.dev|Kptfile|default|edge-nodegroup'
+upstream:
+  type: git
+  git:
+    repo: https://github.com/infinitydon/nephio-proxmox-packages.git
+    directory: workload-nodegroup-package
+    ref: r3
+upstreamLock:
+  type: git
+  git:
+    repo: https://github.com/infinitydon/nephio-proxmox-packages.git
+    directory: workload-nodegroup-package
+    ref: r3
+    commit: 682ffcfa7bd3f3862ee00f2a1d0ac89585fdce61
+info:
+  description: this package is used to deploy workload cluster via FluxCD TF controller
+pipeline:
+  mutators:
+  - image: gcr.io/kpt-fn/apply-replacements:v0.1.1
+    configPath: apply-replacements.yaml
