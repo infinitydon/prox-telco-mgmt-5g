@@ -1,0 +1,12 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata: # kpt-merge: flux-system/proxmox-infra-tf-repo
+  name: proxmox-infra-tf-repo
+  namespace: flux-system
+  annotations:
+    internal.kpt.dev/upstream-identifier: 'source.toolkit.fluxcd.io|GitRepository|flux-system|proxmox-infra-tf-repo'
+spec:
+  interval: 30s
+  url: https://github.com/infinitydon/proxmox-infra-terraform/
+  ref:
+    branch: main
