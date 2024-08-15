@@ -17,6 +17,6 @@ upstreamLock:
     repo: https://github.com/infinitydon/nephio-proxmox-packages.git
     directory: sdc-router-automation-package
     ref: r3
-    commit: b4ed75732de2f3159a10b6b1cd5c567be11f896f
+    commit: 9569148a9b3d7847afecc0b8b06b2ba3cd52fa56
 info:
   description: this package is used to deploy SDC for configuring router via K8S Netconf

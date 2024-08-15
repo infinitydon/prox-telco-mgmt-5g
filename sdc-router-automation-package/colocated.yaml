@@ -1247,10 +1247,11 @@ rules:
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
-metadata: # kpt-merge: /config-server-clusterrolebinding
+metadata: # kpt-merge: network-system/config-server-clusterrolebinding
   name: config-server-clusterrolebinding
+  namespace: network-system
   annotations:
-    internal.kpt.dev/upstream-identifier: 'rbac.authorization.k8s.io|RoleBinding|default|config-server-clusterrolebinding'
+    internal.kpt.dev/upstream-identifier: 'rbac.authorization.k8s.io|RoleBinding|network-system|config-server-clusterrolebinding'
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
