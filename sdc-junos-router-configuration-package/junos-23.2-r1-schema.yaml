@@ -1,0 +1,23 @@
+apiVersion: inv.sdcio.dev/v1alpha1
+kind: Schema
+metadata: # kpt-merge: default/mx.juniper.23.2r1
+  name: mx.juniper.23.2r1
+  namespace: default
+  annotations:
+    internal.kpt.dev/upstream-identifier: 'inv.sdcio.dev|Schema|default|mx.juniper.23.2r1'
+spec:
+  repoURL: https://github.com/Juniper/yang
+  provider: mx.juniper.sdcio.dev
+  version: 23.2R1
+  kind: branch
+  ref: master
+  dirs:
+  - src: 23.2/23.2R1/junos/conf
+    dst: junos
+  - src: 23.2/23.2R1/common
+    dst: common
+  schema:
+    models:
+    - junos
+    includes:
+    - common
