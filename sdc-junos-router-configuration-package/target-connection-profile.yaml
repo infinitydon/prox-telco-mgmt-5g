@@ -1,0 +1,16 @@
+apiVersion: inv.sdcio.dev/v1alpha1
+kind: TargetConnectionProfile
+metadata: # kpt-merge: default/netconf
+  name: netconf
+  namespace: default
+  labels:
+    dummy: dummy
+  annotations:
+    internal.kpt.dev/upstream-identifier: 'inv.sdcio.dev|TargetConnectionProfile|default|netconf'
+spec:
+  port: 830
+  protocol: netconf
+  encoding: ASCII
+  skipVerify: true
+  includeNS: true
+  operationWithNS: true

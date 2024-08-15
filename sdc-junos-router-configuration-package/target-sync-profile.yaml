@@ -1,0 +1,19 @@
+apiVersion: inv.sdcio.dev/v1alpha1
+kind: TargetSyncProfile
+metadata: # kpt-merge: default/netconf-getconfig
+  name: netconf-getconfig
+  namespace: default
+  annotations:
+    internal.kpt.dev/upstream-identifier: 'inv.sdcio.dev|TargetSyncProfile|default|netconf-getconfig'
+spec:
+  buffer: 0
+  workers: 10
+  validate: true
+  sync:
+  - name: config
+    protocol: netconf
+    paths:
+    - /
+    mode: sample
+    encoding: config
+    interval: "10s"
